@@ -46,8 +46,8 @@ void Population::crossover() {
     for (auto it = child.begin(); it != child.end(); it++) {
         cout << "City: " << it->getName() << " X: " << it->getX() << " Y: " << it->getY() << endl;
     }
-    Tour crossTour(child);
-    pTour.insert(make_pair(crossTour.getFitness(), crossTour));
+    Tour crossoverTour(child);
+    pTour.insert(make_pair(crossoverTour.getFitness(), crossoverTour));
 }
 
 // mutate a city
