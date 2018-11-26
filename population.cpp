@@ -21,30 +21,47 @@ void Population::printPopulation() {
 void Population::crossover() {
     vector<City> child;
     int parentA = rand() % CITIES_IN_TOUR;
+    int parentB = rand() % CITIES_IN_TOUR;
+    int index = 0;
     for (auto it = pTour.begin(); it != pTour.end(); it++) {
         vector<City> tempCity = it->second.getTour();
-        //Need to fill in up to and including this index
-        for (int i = 0; i < parentA; i++) {
-            // add to first parent
-            child.push_back(tempCity.at(i));
-        }
-        cout << "Adding to first index: " << parentA << endl;
-
-        while (parentA < CITIES_IN_TOUR) {
-            for (int i = 0 ; i < CITIES_IN_TOUR; i++) {
-                if (!contains_city(tempCity[i])) {
-                    // add rest to second parent
-                    child.push_back(tempCity[i]);
-                    parentA++;
+        if (index == 0) {
+            //Need to fill in up to and including this index
+            for (int i = 0; i < parentA; i++) {
+                child.push_back(tempCity.at(i));
+                index++;
+            }
+        } else {
+            for (unsigned int j = 0; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
+                for (unsigned int i = 0; i < child.size(); i++) {
+                    if (!contains_city(child[i])) {
+                        child.push_back(tempCity[j]);
+                    }
                 }
             }
-            cout << "Adding to second index: " << parentA << endl;
+        }
+
+        cout << "\nPrinting child tour" << endl;
+        for (auto it = child.begin(); it != child.end(); it++) {
+            cout << "City: " << it->getName() << " X: " << it->getX() << " Y: " << it->getY() << endl;
         }
     }
 }
 
 void Population::mutate() {
-
+    vector<City> city;
+    int k = 0;
+    double mutates = 0;
+    for (int i = 0 + NUMBER_OF_ELITES; i < POPULATION_SIZE; i++) {
+        for (int j = 0; j < CITIES_IN_TOUR; j++) {
+            mutates = rand() / (double) RAND_MAX;
+            if (mutates < MUTATION_RATE) {
+                k = rand() % CITIES_IN_TOUR;
+                swap(j, k);
+            }
+        }
+    }
+    cout << "Mutating city" << endl;
 }
 
 // select the parents for a new tour from a population randomly

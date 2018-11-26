@@ -7,6 +7,7 @@
 #define POPULATION_SIZE 32
 #define CITIES_IN_TOUR 32
 #define NUMBER_OF_ELITES 1
+#define MUTATION_RATE 0.15
 #define MAP_BOUNDARY 1000
 
 class Population {
