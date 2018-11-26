@@ -27,12 +27,11 @@ void Population::crossover() {
     for (auto it = pTour.begin(); it != pTour.end(); it++) {
         vector<City> tempCity = it->second.getTour();
         if (index == 0) {
-            //Need to fill in up to and including this index
             for (int i = 0; i < parentA; i++) {
                 child.push_back(tempCity.at(i));
                 index++;
             }
-        } else {
+        } else if (index == parentA + 1){
             for (int j = 0; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
                 for (int i = 0; i < child.size(); i++) {
                     if (!contains_city(child[i])) {
@@ -42,12 +41,14 @@ void Population::crossover() {
             }
         }
     }
+    Tour crossoverTour(child);
+    pTour.insert(make_pair(crossoverTour.getFitness(), crossoverTour));
+
     cout << "\nPrinting child tour" << endl;
     for (auto it = child.begin(); it != child.end(); it++) {
         cout << "City: " << it->getName() << " X: " << it->getX() << " Y: " << it->getY() << endl;
     }
-    Tour crossoverTour(child);
-    pTour.insert(make_pair(crossoverTour.getFitness(), crossoverTour));
+
 }
 
 // mutate a city
