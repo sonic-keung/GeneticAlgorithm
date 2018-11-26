@@ -51,40 +51,40 @@ void Population::crossover() {
 // mutate a city
 void Population::mutate() {
     vector<City> city;
-    int k = 0;
+    int random = 0;
     double mutates = 0;
     for (int i = 0 + NUMBER_OF_ELITES; i < POPULATION_SIZE; i++) {
         for (int j = 0; j < CITIES_IN_TOUR; j++) {
             mutates = rand() / (double) RAND_MAX;
             if (mutates < MUTATION_RATE) {
-                k = rand() % CITIES_IN_TOUR;
-                swap(j, k);
+                random = rand() % CITIES_IN_TOUR;
+                swap(j, random);
             }
         }
     }
     cout << "Mutating city" << endl;
 }
 
-// select the parents for a new tour from a population randomly
+// select 2 parents for a new tour from a population randomly
 void Population::select_parents() {
-    int k = 0;
+    int random = 0;
     double parent_index = 0;
 
     for (int i = 0; i < NUMBER_OF_PARENTS; i++) {
         vector<Tour> parentPool;
         for (int j = 0; j < PARENT_POOL_SIZE; j++) {
-            k = rand() % POPULATION_SIZE;
-            parentPool.push_back(parentTour[k]);
+            random = rand() % POPULATION_SIZE;
+            parentPool.push_back(parentTour[random]);
             parentPool.clear();
         }
         auto it = parentTour.begin();
-        advance(it, k);
+        advance(it, random);
         Tour tempTour = it->second;
         parent_index = tempTour.getFitness();
         parents.push_back(parentPool[parent_index]);
         parentTour.insert(make_pair(parent_index, tempTour));
 
-        cout << "Parent " << i << ": " << parents[k].getFitness() << endl;
+        cout << "Parent " << i << ": " << parents[random].getFitness() << endl;
     }
 }
 

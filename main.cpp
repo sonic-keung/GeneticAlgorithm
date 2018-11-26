@@ -34,7 +34,6 @@ int main() {
     population1.select_parents();
     population1.printElites();
     population1.crossover();
-    population1.mutate();
 
     return 0;
 }
