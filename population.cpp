@@ -23,17 +23,18 @@ void Population::crossover() {
     int parentA = rand() % CITIES_IN_TOUR;
     int parentB = rand() % CITIES_IN_TOUR;
     int index = 0;
+    int i, j = 0;
     for (auto it = pTour.begin(); it != pTour.end(); it++) {
         vector<City> tempCity = it->second.getTour();
         if (index == 0) {
             //Need to fill in up to and including this index
-            for (int i = 0; i < parentA; i++) {
+            for (i = 0; i < parentA; i++) {
                 child.push_back(tempCity.at(i));
                 index++;
             }
         } else {
-            for (unsigned int j = 0; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
-                for (unsigned int i = 0; i < child.size(); i++) {
+            for (j = i; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
+                for (int i = 0; i < child.size(); i++) {
                     if (!contains_city(child[i])) {
                         child.push_back(tempCity[j]);
                     }
