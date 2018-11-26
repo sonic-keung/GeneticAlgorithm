@@ -9,10 +9,12 @@
 #define CITIES_IN_TOUR 32
 #define NUMBER_OF_ELITES 1
 
+// add each tour to population
 void Population::addToPopulation(Tour tour) {
     pTour.insert(make_pair(tour.getFitness(), tour));
 }
 
+// print the tour and fitness of each population
 void Population::printPopulation() {
     int count = 0;
     for (auto it = pTour.begin(); it != pTour.end(); it++) {
@@ -51,6 +53,7 @@ void Population::mutate() {
 
 }
 
+// select the parents for a new tour from a population randomly
 void Population::select_parents() {
     int k = 0;
     double parent_index = 0;
@@ -73,6 +76,7 @@ void Population::select_parents() {
     }
 }
 
+// print the elites
 void Population::printElites() {
     for (auto it = parentTour.begin(); it != parentTour.end(); it++) {
         cout << "fitness: " << it->first << endl;
@@ -80,6 +84,7 @@ void Population::printElites() {
     }
 }
 
+// check if city contains a specified city
 bool Population::contains_city(City myCity) {
     Tour myTour;
     int length;

@@ -7,6 +7,7 @@
 
 #define MAP_BOUNDARY 1000
 
+// populate 32 cities randomly
 vector<City> createCity(int numOfCities) {
     vector<City> city;
     for (int i = 0; i < numOfCities; i++) {
