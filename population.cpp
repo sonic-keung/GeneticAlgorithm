@@ -84,7 +84,7 @@ void Population::select_parents() {
         parents.push_back(parentPool[parent_index]);
         parentTour.insert(make_pair(parent_index, tempTour));
 
-        cout << "Parent " << i << ": " << parents[random].getFitness() << endl;
+        cout << "Parent " << i << ":  " << parents[random].getFitness() << endl;
     }
 }
 
