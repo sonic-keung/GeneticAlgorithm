@@ -48,6 +48,7 @@ void Population::crossover() {
     }
 }
 
+// mutate a city
 void Population::mutate() {
     vector<City> city;
     int k = 0;
