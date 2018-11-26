@@ -23,7 +23,28 @@ void Population::printPopulation() {
 }
 
 void Population::crossover() {
+    vector<City> child;
+    int parentA = rand() % CITIES_IN_TOUR;
+    for (auto it = pTour.begin(); it != pTour.end(); it++) {
+        vector<City> tempCity = it->second.getTour();
+        //Need to fill in up to and including this index
+        for (int i = 0; i < parentA; i++) {
+            // add to first parent
+            child.push_back(tempCity.at(i));
+        }
+        cout << "Adding to first index: " << parentA << endl;
 
+        while (parentA < CITIES_IN_TOUR) {
+            for (int i = 0 ; i < CITIES_IN_TOUR; i++) {
+                if (!contains_city(tempCity[i])) {
+                    // add rest to second parent
+                    child.push_back(tempCity[i]);
+                    parentA++;
+                }
+            }
+        }
+        cout << "Adding to second index: " << parentA << endl;
+    }
 }
 
 void Population::mutate() {
@@ -59,8 +80,9 @@ void Population::printElites() {
     }
 }
 
-bool Population::contains_city(City myCity, int length) {
+bool Population::contains_city(City myCity) {
     Tour myTour;
+    int length;
     for (int i = 0; i < length; i++) {
         if (myTour.getTour()[i].getName() == myCity.getName() &&
             myTour.getTour()[i].getX() == myCity.getX() &&

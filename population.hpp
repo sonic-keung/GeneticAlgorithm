@@ -13,7 +13,7 @@ public:
     void mutate();
     void select_parents();
     void printElites();
-    bool contains_city(City, int);
+    bool contains_city(City);
     Population() = default;
 
 };
