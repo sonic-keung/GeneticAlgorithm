@@ -38,8 +38,8 @@ void Population::crossover() {
                     parentA++;
                 }
             }
+            cout << "Adding to second index: " << parentA << endl;
         }
-        cout << "Adding to second index: " << parentA << endl;
     }
 }
 
