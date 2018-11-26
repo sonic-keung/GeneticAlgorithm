@@ -1,6 +1,14 @@
 #include <vector>
 #include "tour.hpp"
 #include "city.hpp"
+
+#define NUMBER_OF_PARENTS 2
+#define PARENT_POOL_SIZE 5
+#define POPULATION_SIZE 32
+#define CITIES_IN_TOUR 32
+#define NUMBER_OF_ELITES 1
+#define MAP_BOUNDARY 1000
+
 class Population {
 private:
     map<double, Tour> pTour;

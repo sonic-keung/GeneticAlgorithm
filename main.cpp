@@ -5,8 +5,6 @@
 #include "city.hpp"
 #include "population.hpp"
 
-#define MAP_BOUNDARY 1000
-
 // populate 32 cities randomly
 vector<City> createCity(int numOfCities) {
     vector<City> city;
@@ -20,7 +18,6 @@ vector<City> createCity(int numOfCities) {
 
 int main() {
     srand(time(NULL));
-    const int CITIES_IN_TOUR = 32;
     vector<City> vector1 = createCity(CITIES_IN_TOUR);
 
     cout << "printing tours and cities" << endl;

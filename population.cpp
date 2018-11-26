@@ -3,12 +3,6 @@
 #include <random>
 #include "population.hpp"
 
-#define NUMBER_OF_PARENTS 2
-#define PARENT_POOL_SIZE 5
-#define POPULATION_SIZE 32
-#define CITIES_IN_TOUR 32
-#define NUMBER_OF_ELITES 1
-
 // add each tour to population
 void Population::addToPopulation(Tour tour) {
     pTour.insert(make_pair(tour.getFitness(), tour));
