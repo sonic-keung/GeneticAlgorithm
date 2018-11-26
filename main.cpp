@@ -34,6 +34,7 @@ int main() {
     population1.select_parents();
     population1.printElites();
     population1.crossover();
+    population1.printElites();
 
     std::cout << "Hello, World!" << std::endl;
     return 0;

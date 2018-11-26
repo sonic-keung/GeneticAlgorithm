@@ -8,12 +8,7 @@ private:
 public:
     City();
     ~City() {}
-    City(int name, double x, double y) : name(name), coordinate_x(x), coordinate_y(y) {
-//        if (coordinate_x < 0 || coordinate_x > 1000 || coordinate_y < 0 || coordinate_y > 100) {
-//            throw "X and Y coordinates must be greater than 0 or less than 1000";
-//        }
-    }
-
+    City(int name, double x, double y) : name(name), coordinate_x(x), coordinate_y(y) {}
     int getName();
     double getX();
     double getY();
