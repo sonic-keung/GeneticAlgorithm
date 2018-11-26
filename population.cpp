@@ -23,17 +23,17 @@ void Population::crossover() {
     int parentA = rand() % CITIES_IN_TOUR;
     int parentB = rand() % CITIES_IN_TOUR;
     int index = 0;
-    int i, j = 0;
+
     for (auto it = pTour.begin(); it != pTour.end(); it++) {
         vector<City> tempCity = it->second.getTour();
         if (index == 0) {
             //Need to fill in up to and including this index
-            for (i = 0; i < parentA; i++) {
+            for (int i = 0; i < parentA; i++) {
                 child.push_back(tempCity.at(i));
                 index++;
             }
         } else {
-            for (j = i; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
+            for (int j = 0; j < tempCity.size() && index < parentB + NUMBER_OF_PARENTS; j++) {
                 for (int i = 0; i < child.size(); i++) {
                     if (!contains_city(child[i])) {
                         child.push_back(tempCity[j]);
@@ -41,12 +41,13 @@ void Population::crossover() {
                 }
             }
         }
-
-        cout << "\nPrinting child tour" << endl;
-        for (auto it = child.begin(); it != child.end(); it++) {
-            cout << "City: " << it->getName() << " X: " << it->getX() << " Y: " << it->getY() << endl;
-        }
     }
+    cout << "\nPrinting child tour" << endl;
+    for (auto it = child.begin(); it != child.end(); it++) {
+        cout << "City: " << it->getName() << " X: " << it->getX() << " Y: " << it->getY() << endl;
+    }
+    Tour crossTour(child);
+    pTour.insert(make_pair(crossTour.getFitness(), crossTour));
 }
 
 // mutate a city

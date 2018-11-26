@@ -35,5 +35,6 @@ int main() {
     population1.printElites();
     population1.crossover();
 
+    cout << "k" << endl;
     return 0;
 }
