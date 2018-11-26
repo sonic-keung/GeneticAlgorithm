@@ -5,10 +5,11 @@ class Population {
 private:
     map<double, Tour> pTour;
     map<double, Tour> parentTour;
+    vector<Tour> parents;
 public:
     void addToPopulation(Tour);
     void printPopulation();
-    void crossover(vector<Tour>);
+    void crossover();
     void mutate();
     void select_parents();
     void printElites();

@@ -32,9 +32,10 @@ int main() {
     }
     population1.printPopulation();
 
-    cout << "elites: " << endl;
+    cout << "Elites: " << endl;
     population1.select_parents();
     population1.printElites();
+    population1.crossover();
 
     std::cout << "Hello, World!" << std::endl;
     return 0;

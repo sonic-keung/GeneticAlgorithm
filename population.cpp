@@ -6,6 +6,7 @@
 #define NUMBER_OF_PARENTS 2
 #define PARENT_POOL_SIZE 5
 #define POPULATION_SIZE 32
+#define CITIES_IN_TOUR 32
 #define NUMBER_OF_ELITES 1
 
 void Population::addToPopulation(Tour tour) {
@@ -14,34 +15,15 @@ void Population::addToPopulation(Tour tour) {
 
 void Population::printPopulation() {
     int count = 0;
-
-    for (auto it : pTour) {
+    for (auto it = pTour.begin(); it != pTour.end(); it++) {
         cout << "\nTour: " << count++ << endl;
-        cout << "Fitness: " << it.first <<endl;
-        it.second.printTour();
+        cout << "Fitness: " << it->first <<endl;
+        it->second.printTour();
     }
 }
 
-void Population::crossover(vector<Tour> parents) {
-        // Randomly select 2 different parents
-//    unsigned long A = 0;
-//    unsigned long B = 0;
-//    while ( A == B) {   // 2 different numbers
-//        A = randInt(parents.size());
-//        B = randInt(parents.size());
-//    }
-//    // Crossover - Copy first half of parent A, then add remaining cities in the order they appear in parent B
-//    unsigned long mid = randInt(pTour.size()-1);
-//    pTour.clear();
-//    for(int k = 0; k < mid; mid++) {
-//        pTour.push_back(parents[A].getTour()[k]);
-//    }
-//    for(int j = mid; j < parents[B].getTour().size(); j++) {
-//        if(!contains_city(parents[B].getTour()[j])) {
-//            pTour.push_back(parents[B].getTour()[j]);
-//        }
-//    }
-//    getFitness();    // calculates the new fitness/distance
+void Population::crossover() {
+
 }
 
 void Population::mutate() {
@@ -51,8 +33,6 @@ void Population::mutate() {
 void Population::select_parents() {
     int k = 0;
     double parent_index = 0;
-
-    vector<Tour> parents;
 
     for (int i = 0; i < NUMBER_OF_PARENTS; i++) {
         vector<Tour> parentPool;
@@ -67,6 +47,8 @@ void Population::select_parents() {
         parent_index = tempTour.getFitness();
         parents.push_back(parentPool[parent_index]);
         parentTour.insert(make_pair(parent_index, tempTour));
+
+        cout << "Parent " << i << ": " << parents[k].getFitness() << endl;
     }
 }
 
